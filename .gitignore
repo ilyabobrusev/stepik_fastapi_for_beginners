@@ -1,0 +1,8 @@
+__pycache__
+.idea/
+.vscode/
+sffb/bin/
+sffb/include/
+sffb/lib/
+sffb/lib64/
+sffb/pyvenv.cfg
