@@ -94,3 +94,10 @@ Psycopg2cffi (реализуется с слоем cffi для портатив�
 
 DATABASE = 'postgresql+psycopg2cffi://myusername:mypasswordword@myhost:5432/mydatabase'
 ```
+
+```text
+https://docs.sqlalchemy.org/en/20/core/dml.html#sqlalchemy.sql.expression.insert
+https://docs.sqlalchemy.org/en/20/tutorial/data_select.html#the-select-sql-expression-construct
+https://docs.sqlalchemy.org/en/20/tutorial/data_update.html#the-update-sql-expression-construct
+https://docs.sqlalchemy.org/en/20/tutorial/data_update.html#the-delete-sql-expression-construct
+```
