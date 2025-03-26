@@ -9,7 +9,6 @@ from slugify import slugify
 from app.backend.db_depends import get_db
 from app.schemas import CreateCategory
 from app.models.category import Category
-from app.models.products import Product
 
 router = APIRouter(prefix='/categories', tags=['category'])
 
