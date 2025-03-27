@@ -13,13 +13,13 @@ router = APIRouter(prefix='/products', tags=['products'])
 
 @router.get('/')
 async def all_products(db: Annotated[Session, Depends(get_db)]):
-    product = db.scalars(select(Product).where(Product.is_active == True, Product.stock > 0)).all()
-    if not product:
+    products = db.scalars(select(Product).where(Product.is_active == True, Product.stock > 0)).all()
+    if not products:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail='There are no products'
         )
-    return product
+    return products
 
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
