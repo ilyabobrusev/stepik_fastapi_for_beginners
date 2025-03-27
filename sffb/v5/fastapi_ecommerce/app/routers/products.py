@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 from typing import Annotated
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, update
 from slugify import slugify
 
 from app.backend.db_depends import get_db
@@ -55,6 +55,17 @@ async def update_product(product_slug: str):
     pass
 
 
-@router.delete('/')
-async def delete_product(product_id: int):
-    pass
+@router.delete('/{product_slug}')
+async def delete_product(db: Annotated[Session, Depends(get_db)], product_slug: str):
+    products = db.scalar(select(Product).where(Product.slug == product_slug, Product.is_active == True))
+    if products is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='There is no product found'
+        )
+    db.execute(update(Product).where(Product.slug == product_slug).values(is_active=False))
+    db.commit()
+    return {
+        'status_code': status.HTTP_200_OK,
+        'transaction': 'Product delete is successful'
+    }
